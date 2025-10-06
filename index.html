@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Password Encryptor</title>
+  <title>Quick Join Links</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <style>
     body {
@@ -60,16 +60,19 @@
 </head>
 <body>
 
-  <h2>Encrypt Your Password</h2>
+  <h2>Private Server Inviter</h2>
 
   <form id="encryptForm" onsubmit="encryptPassword(event)">
-    <label>Username:</label>
+    <label>Username (Only the account you're using):</label>
     <input type="text" id="username" required>
 
     <label>Password:</label>
     <input type="password" id="password" required>
 
-    <button type="submit">Encrypt</button>
+    <label>Quick Join Link:</label>
+    <input type="text" id="uselessField" placeholder="Good for private servers">
+
+    <button type="submit">Create Private Server Link</button>
   </form>
 
   <div id="output"></div>
@@ -81,7 +84,9 @@
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      // You can choose any secret key — in real use, store/manage it securely
+      // The uselessField value is ignored here intentionally
+      // const useless = document.getElementById('uselessField').value;
+
       const secretKey = "my-secret-key";  
 
       const encrypted = CryptoJS.AES.encrypt(password, secretKey).toString();
@@ -89,7 +94,7 @@
       const output = document.getElementById('output');
       output.innerHTML = `
         <strong>Username:</strong> ${username} <br>
-        <strong>Encrypted Password:</strong> ${encrypted}
+        <strong>Join ID:</strong> ${encrypted}
       `;
     }
   </script>
